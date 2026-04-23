@@ -1,6 +1,27 @@
 # 🏢 Real Estate Rental & Tenant Management System
 
-A full-featured REST API built with **FastAPI**, **SQLAlchemy**, and **SQLite/PostgreSQL** for managing rental properties, tenants, leases, payments, and maintenance.
+A full-featured REST API built with **FastAPI**, **SQLAlchemy**, and **SQLite/PostgreSQL** for managing rental properties, tenants, leases, payments, and maintenance — complete with a dark-themed Jinja2 frontend dashboard.
+
+---
+
+## 📋 What This App Does
+
+This application is a **complete rental property management platform** designed for landlords, property managers, and real estate agencies. It streamlines every aspect of day-to-day rental operations through a RESTful API and an integrated web dashboard.
+
+### Core Features
+
+| Module | Description |
+|--------|-------------|
+| **🏠 Property Management** | Create, update, and track rental properties with details like address, type, rent amount, and availability status. Filter and search across your entire portfolio. |
+| **👤 Tenant Management** | Maintain a tenant directory with contact info, search capabilities, and per-tenant balance overviews (total owed, paid, and outstanding). |
+| **📄 Lease Management** | Create and manage lease agreements linking tenants to properties. Includes lease renewal, expiry alerts, date validation, and double-booking prevention. |
+| **💳 Payment Tracking** | Record rent payments, auto-detect overdue payments, and view tenant payment histories with summaries of amounts paid and outstanding. |
+| **🔧 Maintenance Requests** | Tenants can submit maintenance requests with priority levels; managers can track, update, and resolve them. |
+| **💰 Expense Tracking** | Log property-related expenses (repairs, insurance, utilities, etc.) categorized for reporting. |
+| **📊 Reports & Analytics** | Dashboard with KPIs, monthly income/expense charts, occupancy rates, profit/loss reports, tenant arrears lists, and lease expiry alerts. |
+| **🔐 Authentication & RBAC** | JWT-based login with four roles — **Admin**, **Manager**, **Accountant**, and **Tenant** — each with fine-grained permissions. |
+| **🔔 Notifications** | In-app notification system for important events (overdue payments, lease expirations, etc.). |
+
 
 ---
 
