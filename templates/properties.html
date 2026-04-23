@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <div class="toolbar-left">
+    <div class="search-box"><span class="search-icon">🔍</span><input type="text" class="form-control" placeholder="Search properties..." oninput="filterTable(this.value, 'propertiesTable')"></div>
+  </div>
+  <button class="btn btn-primary" onclick="resetForm('propertyForm');document.querySelector('#propertyModal .modal-header h2').textContent='Add Property';openModal('propertyModal')">+ Add Property</button>
+</div>
+<div class="table-container">
+  <table><thead><tr><th>Name</th><th>Address</th><th>City</th><th>Type</th><th>Status</th><th>Rent</th><th>Size</th><th>Actions</th></tr></thead>
+  <tbody id="propertiesTable"><tr><td colspan="8"><div class="spinner"></div></td></tr></tbody></table>
+</div>
+<!-- Modal -->
+<div class="modal-overlay" id="propertyModal">
+  <div class="modal">
+    <div class="modal-header"><h2>Add Property</h2><button class="modal-close" onclick="closeModal('propertyModal')">&times;</button></div>
+    <form id="propertyForm" onsubmit="saveProperty(event)">
+      <div class="form-row"><div class="form-group"><label>Name*</label><input name="name" class="form-control" required></div><div class="form-group"><label>Type</label><select name="property_type" class="form-control"><option value="apartment">Apartment</option><option value="house">House</option><option value="studio">Studio</option><option value="commercial">Commercial</option></select></div></div>
+      <div class="form-group"><label>Address*</label><input name="address" class="form-control" required></div>
+      <div class="form-row"><div class="form-group"><label>City</label><input name="city" class="form-control"></div><div class="form-group"><label>State</label><input name="state" class="form-control"></div></div>
+      <div class="form-row"><div class="form-group"><label>Rent Amount*</label><input name="rent_amount" type="number" step="0.01" class="form-control" required></div><div class="form-group"><label>Deposit</label><input name="deposit_amount" type="number" step="0.01" class="form-control"></div></div>
+      <div class="form-row"><div class="form-group"><label>Bedrooms</label><input name="bedrooms" type="number" class="form-control" value="1"></div><div class="form-group"><label>Bathrooms</label><input name="bathrooms" type="number" step="0.5" class="form-control" value="1"></div></div>
+      <div class="form-group"><label>Amenities</label><input name="amenities" class="form-control" placeholder="WiFi, Parking, Security"></div>
+      <div class="form-group"><label>Description</label><textarea name="description" class="form-control"></textarea></div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal('propertyModal')">Cancel</button><button type="submit" class="btn btn-primary">Save Property</button></div>
+    </form>
+  </div>
+</div>
+<script>function filterTable(q, id){document.querySelectorAll(`#${id} tr`).forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';});}</script>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', loadProperties);</script>{% endblock %}

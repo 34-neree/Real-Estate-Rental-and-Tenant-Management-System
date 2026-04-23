@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(107,203,119,0.15);color:var(--success)">💰</div><div class="kpi-value" id="annualIncome">—</div><div class="kpi-label">Annual Income</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(231,76,60,0.15);color:var(--danger)">📉</div><div class="kpi-value" id="annualExpenses">—</div><div class="kpi-label">Annual Expenses</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(213,165,116,0.15);color:var(--accent)">📈</div><div class="kpi-value" id="annualProfit">—</div><div class="kpi-label">Annual Profit</div></div>
+</div>
+<div class="grid-2">
+  <div class="chart-container">
+    <div class="card-header"><h3>Monthly Profit/Loss ({{ year }})</h3></div>
+    <div class="chart-bar-container" id="profitChart"><div class="spinner"></div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Expenses by Category</h3></div>
+    <div class="table-container">
+      <table><thead><tr><th>Category</th><th>Total</th></tr></thead>
+      <tbody id="expenseCategoryTable"><tr><td colspan="2"><div class="spinner"></div></td></tr></tbody></table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', loadReports);</script>{% endblock %}

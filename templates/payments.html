@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <div class="toolbar-left"></div>
+  <button class="btn btn-primary" onclick="resetForm('paymentForm');openModal('paymentModal')">+ Record Payment</button>
+</div>
+<div class="table-container">
+  <table><thead><tr><th>ID</th><th>Lease</th><th>Due</th><th>Paid</th><th>Method</th><th>Status</th><th>Due Date</th><th>Paid Date</th><th>Actions</th></tr></thead>
+  <tbody id="paymentsTable"><tr><td colspan="9"><div class="spinner"></div></td></tr></tbody></table>
+</div>
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal">
+    <div class="modal-header"><h2>Record Payment</h2><button class="modal-close" onclick="closeModal('paymentModal')">&times;</button></div>
+    <form id="paymentForm" onsubmit="savePayment(event)">
+      <div class="form-row"><div class="form-group"><label>Lease ID*</label><input name="lease_id" type="number" class="form-control" required></div><div class="form-group"><label>Tenant ID*</label><input name="tenant_id" type="number" class="form-control" required></div></div>
+      <div class="form-row"><div class="form-group"><label>Amount Due*</label><input name="amount_due" type="number" step="0.01" class="form-control" required></div><div class="form-group"><label>Amount Paid*</label><input name="amount" type="number" step="0.01" class="form-control" required></div></div>
+      <div class="form-row"><div class="form-group"><label>Method</label><select name="payment_method" class="form-control"><option value="cash">Cash</option><option value="bank_transfer">Bank Transfer</option><option value="mobile_money">Mobile Money</option><option value="cheque">Cheque</option></select></div><div class="form-group"><label>Due Date*</label><input name="due_date" type="datetime-local" class="form-control" required></div></div>
+      <div class="form-row"><div class="form-group"><label>Period Month</label><input name="period_month" type="number" min="1" max="12" class="form-control"></div><div class="form-group"><label>Period Year</label><input name="period_year" type="number" class="form-control"></div></div>
+      <div class="form-row"><div class="form-group"><label>Transaction Ref</label><input name="transaction_ref" class="form-control"></div><div class="form-group"><label>Payment Date</label><input name="payment_date" type="datetime-local" class="form-control"></div></div>
+      <div class="form-group"><label>Notes</label><textarea name="notes" class="form-control"></textarea></div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal('paymentModal')">Cancel</button><button type="submit" class="btn btn-primary">Save Payment</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', loadPayments);</script>{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <div class="toolbar-left"></div>
+  <button class="btn btn-primary" onclick="resetForm('leaseForm');openModal('leaseModal')">+ Create Lease</button>
+</div>
+<div class="table-container">
+  <table><thead><tr><th>ID</th><th>Property</th><th>Tenant</th><th>Start</th><th>End</th><th>Rent</th><th>Status</th><th>Actions</th></tr></thead>
+  <tbody id="leasesTable"><tr><td colspan="8"><div class="spinner"></div></td></tr></tbody></table>
+</div>
+<div class="modal-overlay" id="leaseModal">
+  <div class="modal">
+    <div class="modal-header"><h2>Create Lease</h2><button class="modal-close" onclick="closeModal('leaseModal')">&times;</button></div>
+    <form id="leaseForm" onsubmit="saveLease(event)">
+      <div class="form-row"><div class="form-group"><label>Property ID*</label><input name="property_id" type="number" class="form-control" required></div><div class="form-group"><label>Tenant ID*</label><input name="tenant_id" type="number" class="form-control" required></div></div>
+      <div class="form-row"><div class="form-group"><label>Start Date*</label><input name="start_date" type="datetime-local" class="form-control" required></div><div class="form-group"><label>End Date*</label><input name="end_date" type="datetime-local" class="form-control" required></div></div>
+      <div class="form-row"><div class="form-group"><label>Rent Amount*</label><input name="rent_amount" type="number" step="0.01" class="form-control" required></div><div class="form-group"><label>Deposit</label><input name="deposit_amount" type="number" step="0.01" class="form-control" value="0"></div></div>
+      <div class="form-row"><div class="form-group"><label>Payment Due Day</label><input name="payment_due_day" type="number" min="1" max="28" class="form-control" value="1"></div><div class="form-group"><label>Late Fee</label><input name="late_fee" type="number" step="0.01" class="form-control" value="0"></div></div>
+      <div class="form-group"><label>Notes</label><textarea name="notes" class="form-control"></textarea></div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal('leaseModal')">Cancel</button><button type="submit" class="btn btn-primary">Save Lease</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', loadLeases);</script>{% endblock %}

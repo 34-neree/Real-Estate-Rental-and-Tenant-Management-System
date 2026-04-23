@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — Rental Management</title>
+  <meta name="description" content="Professional rental property and tenant management system">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">🏢</div>
+        <div><h2>Rental Manager</h2><small>Property Management</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">Main</div>
+        <a href="/" class="nav-item" data-page="/"><span class="icon">📊</span> Dashboard</a>
+        <div class="nav-section">Management</div>
+        <a href="/properties" class="nav-item" data-page="/properties"><span class="icon">🏠</span> Properties</a>
+        <a href="/tenants" class="nav-item" data-page="/tenants"><span class="icon">👥</span> Tenants</a>
+        <a href="/leases" class="nav-item" data-page="/leases"><span class="icon">📄</span> Leases</a>
+        <div class="nav-section">Finance</div>
+        <a href="/payments" class="nav-item" data-page="/payments"><span class="icon">💰</span> Payments</a>
+        <a href="/expenses" class="nav-item" data-page="/expenses"><span class="icon">📉</span> Expenses</a>
+        <a href="/reports" class="nav-item" data-page="/reports"><span class="icon">📈</span> Reports</a>
+        <div class="nav-section">Operations</div>
+        <a href="/maintenance" class="nav-item" data-page="/maintenance"><span class="icon">🔧</span> Maintenance</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="nav-item" onclick="Auth.logout()" style="color:var(--danger)">
+          <span class="icon">🚪</span> Sign Out
+        </button>
+      </div>
+    </aside>
+    <!-- Main -->
+    <div class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+          <h1>{{ title }}</h1>
+        </div>
+        <div class="header-right">
+          <div class="user-menu">
+            <div class="user-avatar" id="userAvatar">AD</div>
+            <div class="user-info">
+              <div class="name" id="userName">User</div>
+              <div class="role" id="userRole">admin</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="content fade-in">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+  <script src="/static/js/auth.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script>
+    if (!Auth.isLoggedIn() && window.location.pathname !== '/login') window.location.href = '/login';
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

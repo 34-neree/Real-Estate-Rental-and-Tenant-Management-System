@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="kpi-grid">
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(213,165,116,0.15);color:var(--accent)">🏠</div><div class="kpi-value" id="kpiProperties">—</div><div class="kpi-label">Total Properties</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(107,203,119,0.15);color:var(--success)">📊</div><div class="kpi-value" id="kpiOccupancy">—</div><div class="kpi-label">Occupancy Rate</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(116,185,255,0.15);color:var(--info)">👥</div><div class="kpi-value" id="kpiTenants">—</div><div class="kpi-label">Active Tenants</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(213,165,116,0.15);color:var(--accent)">📄</div><div class="kpi-value" id="kpiLeases">—</div><div class="kpi-label">Active Leases</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(107,203,119,0.15);color:var(--success)">💰</div><div class="kpi-value" id="kpiIncome">—</div><div class="kpi-label">Monthly Income</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(231,76,60,0.15);color:var(--danger)">⚠️</div><div class="kpi-value" id="kpiOverdue">—</div><div class="kpi-label">Overdue Payments</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(255,201,60,0.15);color:var(--warning)">🔧</div><div class="kpi-value" id="kpiMaintenance">—</div><div class="kpi-label">Open Maintenance</div></div>
+  <div class="kpi-card"><div class="kpi-icon" style="background:rgba(107,203,119,0.15);color:var(--success)">📈</div><div class="kpi-value" id="kpiNet">—</div><div class="kpi-label">Net Income</div></div>
+</div>
+<div class="grid-2">
+  <div class="chart-container">
+    <div class="card-header"><h3>Monthly Income ({{ year }})</h3></div>
+    <div class="chart-bar-container" id="incomeChart"><div class="spinner"></div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>Quick Actions</h3></div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="/properties" class="btn btn-secondary">🏠 Manage Properties</a>
+      <a href="/tenants" class="btn btn-secondary">👥 View Tenants</a>
+      <a href="/payments" class="btn btn-secondary">💰 Record Payment</a>
+      <a href="/maintenance" class="btn btn-secondary">🔧 Maintenance Requests</a>
+      <a href="/reports" class="btn btn-secondary">📈 View Reports</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', loadDashboard);</script>{% endblock %}

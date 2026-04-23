@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <div class="toolbar-left"><div class="search-box"><span class="search-icon">🔍</span><input type="text" class="form-control" placeholder="Search tenants..." oninput="filterTable(this.value,'tenantsTable')"></div></div>
+  <button class="btn btn-primary" onclick="resetForm('tenantForm');document.querySelector('#tenantModal .modal-header h2').textContent='Add Tenant';openModal('tenantModal')">+ Add Tenant</button>
+</div>
+<div class="table-container">
+  <table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Occupation</th><th>Status</th><th>Actions</th></tr></thead>
+  <tbody id="tenantsTable"><tr><td colspan="6"><div class="spinner"></div></td></tr></tbody></table>
+</div>
+<div class="modal-overlay" id="tenantModal">
+  <div class="modal">
+    <div class="modal-header"><h2>Add Tenant</h2><button class="modal-close" onclick="closeModal('tenantModal')">&times;</button></div>
+    <form id="tenantForm" onsubmit="saveTenant(event)">
+      <div class="form-row"><div class="form-group"><label>First Name*</label><input name="first_name" class="form-control" required></div><div class="form-group"><label>Last Name*</label><input name="last_name" class="form-control" required></div></div>
+      <div class="form-row"><div class="form-group"><label>Email*</label><input name="email" type="email" class="form-control" required></div><div class="form-group"><label>Phone</label><input name="phone" class="form-control"></div></div>
+      <div class="form-row"><div class="form-group"><label>National ID</label><input name="national_id" class="form-control"></div><div class="form-group"><label>Occupation</label><input name="occupation" class="form-control"></div></div>
+      <div class="form-group"><label>Employer</label><input name="employer" class="form-control"></div>
+      <div class="form-group"><label>Notes</label><textarea name="notes" class="form-control"></textarea></div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal('tenantModal')">Cancel</button><button type="submit" class="btn btn-primary">Save Tenant</button></div>
+    </form>
+  </div>
+</div>
+<script>function filterTable(q,id){document.querySelectorAll(`#${id} tr`).forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';});}</script>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', loadTenants);</script>{% endblock %}
